@@ -1,0 +1,2 @@
+timestamp_ns,tier,core_utilization_pct,memory_used_bytes,memory_capacity_bytes,packets_processed,packets_queued,packets_dropped
+720089851,H,0,0,4294967296,439,0,0

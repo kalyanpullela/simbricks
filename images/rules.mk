@@ -30,12 +30,13 @@ MEMCACHED_IMAGE := $(d)output-memcached/memcached
 NOPAXOS_IMAGE := $(d)output-nopaxos/nopaxos
 MTCP_IMAGE := $(d)output-mtcp/mtcp
 TAS_IMAGE := $(d)output-tas/tas
+HCOP_IMAGE := $(d)output-hcop/hcop
 COMPRESSED_IMAGES ?= false
 
-IMAGES := $(BASE_IMAGE) $(NOPAXOS_IMAGE) $(MEMCACHED_IMAGE)
+IMAGES := $(BASE_IMAGE) $(NOPAXOS_IMAGE) $(MEMCACHED_IMAGE) $(HCOP_IMAGE)
 RAW_IMAGES := $(addsuffix .raw,$(IMAGES))
 
-IMAGES_MIN := $(BASE_IMAGE)
+IMAGES_MIN := $(BASE_IMAGE) $(HCOP_IMAGE)
 RAW_IMAGES_MIN := $(addsuffix .raw,$(IMAGES_MIN))
 
 img_dir := $(d)
@@ -47,7 +48,7 @@ kernel_pardir := $(d)kernel
 kernel_dir := $(kernel_pardir)/linux-$(KERNEL_VERSION)
 kernel_config := $(kernel_pardir)/config-$(KERNEL_VERSION)
 kheader_dir := $(d)kernel/kheaders
-kheader_tar := $(d)kheaders.tar.bz2
+kheader_tar := $(d)kheaders.tar.gz
 mqnic_dir := $(d)mqnic
 mqnic_mod := $(mqnic_dir)/mqnic.ko
 farmem_dir := $(d)farmem
@@ -126,6 +127,21 @@ $(TAS_IMAGE): $(packer) $(QEMU) $(BASE_IMAGE) \
 	    $(COMPRESSED_IMAGES)
 	touch $@
 
+$(HCOP_IMAGE): $(packer) $(QEMU) $(BASE_IMAGE) \
+    $(addprefix $(d), extended-image.pkr.hcl scripts/install-hcop.sh \
+      scripts/cleanup.sh hcop/Makefile hcop/paxos_host.cc hcop/lock_host.cc \
+      hcop/barrier_host.cc)
+	# Build binaries
+	$(MAKE) -C images/hcop
+	rm -rf $(dir $@)
+	mkdir -p $(img_dir)/input-hcop
+	cp $(img_dir)/hcop/paxos_host $(img_dir)/hcop/lock_host \
+	   $(img_dir)/hcop/barrier_host $(img_dir)/input-hcop/
+	cd $(img_dir) && ./packer-wrap.sh base hcop extended-image.pkr.hcl \
+	    $(COMPRESSED_IMAGES)
+	rm -rf $(img_dir)/input-hcop
+	touch $@
+
 $(packer):
 	wget -O $(img_dir)packer_$(PACKER_VERSION)_linux_amd64.zip \
 	    https://releases.hashicorp.com/packer/$(PACKER_VERSION)/packer_$(PACKER_VERSION)_linux_amd64.zip
@@ -172,7 +188,7 @@ $(kheader_tar): $(kernel_dir)/vmlinux
 	    $(kernel_dir)/arch/x86/Makefile.um \
 	    $(kernel_dir)/arch/x86/include \
 	    $(kheader_dir)/usr/src/linux-headers-$(KERNEL_VERSION)/arch/x86
-	cd $(kheader_dir) && tar cjf $(abspath $@) .
+	cd $(kheader_dir) && tar czf $(abspath $@) .
 
 $(kernel_dir)/.config: $(kernel_pardir)/config-$(KERNEL_VERSION)
 	rm -rf $(kernel_dir)
@@ -201,6 +217,6 @@ CLEAN := $(addprefix $(d), mqnic/mqnic.ko mqnic/*.o mqnic/.*.cmd mqnic/*.mod \
     farmem/farmem.mod.c farmem/Module.symvers farmem/modules.order)
 DISTCLEAN := $(kernel_dir) $(packer) $(bz_image) $(vmlinux) $(kheader_dir) \
     $(foreach i,$(IMAGES),$(dir $(i)) $(subst output-,input-,$(dir $(i)))) \
-    $(d)packer_cache $(d)kheaders.tar.bz2
+    $(d)packer_cache $(d)kheaders.tar.gz
 
 include mk/subdir_post.mk

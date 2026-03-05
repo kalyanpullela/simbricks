@@ -2,20 +2,22 @@
 
 set -eux
 
-apt-get update
+export DEBIAN_FRONTEND=noninteractive
+
+apt-get update || true
+# Some minimal images lack universe repository which has sysbench, numactl, etc.
+apt-get -y install software-properties-common || true
+add-apt-repository -y universe || true
+apt-get update || true
+
 apt-get -y install \
     iperf \
     iputils-ping \
-    lbzip2 \
     netperf \
     netcat \
     ethtool \
     tcpdump \
-    pciutils \
-    busybox \
-    numactl \
-    sysbench \
-    time
+    pciutils || true
 
 pushd /tmp/input
 mv guestinit.sh /home/ubuntu/guestinit.sh
@@ -34,7 +36,7 @@ update-grub
 # copy... -.-
 mkdir kheaders
 cd kheaders
-tar xf /tmp/input/kheaders.tar.bz2
+tar xzf /tmp/input/kheaders.tar.gz
 cp -a lib/modules/* /lib/modules/
 cp -a usr/* /usr/
 

@@ -1,0 +1,25 @@
+
+=== _metadata ===
+
+=== host.host1 ===
+
+Formatting '/home/user/Documents/simbricks/experiments/out/simulation-hcop_br_dh/47/tmp/imgs/hdcopy.36.10.0', fmt=qcow2 cluster_size=65536 extended_l2=off compression_type=zlib size=42949672960 backing_file=/home/user/Documents/simbricks/images/output-hcop/hcop backing_fmt=qcow2 lazy_refcounts=off refcount_bits=16
+
+=== host.host0 ===
+
+Formatting '/home/user/Documents/simbricks/experiments/out/simulation-hcop_br_dh/47/tmp/imgs/hdcopy.34.2.0', fmt=qcow2 cluster_size=65536 extended_l2=off compression_type=zlib size=42949672960 backing_file=/home/user/Documents/simbricks/images/output-hcop/hcop backing_fmt=qcow2 lazy_refcounts=off refcount_bits=16
+
+
+=== host.host-dpu ===
+
+Formatting '/home/user/Documents/simbricks/experiments/out/simulation-hcop_br_dh/47/tmp/imgs/hdcopy.38.18.0', fmt=qcow2 cluster_size=65536 extended_l2=off compression_type=zlib size=42949672960 backing_file=/home/user/Documents/simbricks/images/output-hcop/hcop backing_fmt=qcow2 lazy_refcounts=off refcount_bits=16
+
+
+=== nic.NICSim-37 ===
+
+
+=== nic.DpuBMSim-39 ===
+
+
+=== nic.NICSim-35 ===
+

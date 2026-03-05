@@ -1,0 +1,150 @@
++ [host.host0] /home/user/Documents/simbricks/sims/external/qemu/build/qemu-img create -f qcow2 -F qcow2 -o backing_file="/home/user/Documents/simbricks/images/output-hcop/hcop" /home/user/Documents/simbricks/experiments/out/simulation-hcop_br_dh/47/tmp/imgs/hdcopy.34.2.0
++ [host.host1] /home/user/Documents/simbricks/sims/external/qemu/build/qemu-img create -f qcow2 -F qcow2 -o backing_file="/home/user/Documents/simbricks/images/output-hcop/hcop" /home/user/Documents/simbricks/experiments/out/simulation-hcop_br_dh/47/tmp/imgs/hdcopy.36.10.0
++ [host.host-dpu] /home/user/Documents/simbricks/sims/external/qemu/build/qemu-img create -f qcow2 -F qcow2 -o backing_file="/home/user/Documents/simbricks/images/output-hcop/hcop" /home/user/Documents/simbricks/experiments/out/simulation-hcop_br_dh/47/tmp/imgs/hdcopy.38.18.0
+[host.host0] Formatting '/home/user/Documents/simbricks/experiments/out/simulation-hcop_br_dh/47/tmp/imgs/hdcopy.34.2.0', fmt=qcow2 cluster_size=65536 extended_l2=off compression_type=zlib size=42949672960 backing_file=/home/user/Documents/simbricks/images/output-hcop/hcop backing_fmt=qcow2 lazy_refcounts=off refcount_bits=16
+[host.host1] Formatting '/home/user/Documents/simbricks/experiments/out/simulation-hcop_br_dh/47/tmp/imgs/hdcopy.36.10.0', fmt=qcow2 cluster_size=65536 extended_l2=off compression_type=zlib size=42949672960 backing_file=/home/user/Documents/simbricks/images/output-hcop/hcop backing_fmt=qcow2 lazy_refcounts=off refcount_bits=16
+[host.host-dpu] Formatting '/home/user/Documents/simbricks/experiments/out/simulation-hcop_br_dh/47/tmp/imgs/hdcopy.38.18.0', fmt=qcow2 cluster_size=65536 extended_l2=off compression_type=zlib size=42949672960 backing_file=/home/user/Documents/simbricks/images/output-hcop/hcop backing_fmt=qcow2 lazy_refcounts=off refcount_bits=16
+- [host.host0] exited with code 0
+- [host.host1] exited with code 0
+- [host.host-dpu] exited with code 0
++ [nic.NICSim-35] /home/user/Documents/simbricks/sims/nic/i40e_bm/i40e_bm listen:/home/user/Documents/simbricks/experiments/out/simulation-hcop_br_dh/47/tmp/shm/pci-7.8.6:/home/user/Documents/simbricks/experiments/out/simulation-hcop_br_dh/47/tmp/shm/nic.NICSim-35-shm-pool-35:sync=true:latency=500:sync_interval=500 listen:/home/user/Documents/simbricks/experiments/out/simulation-hcop_br_dh/47/tmp/shm/eth-5.28.27:/home/user/Documents/simbricks/experiments/out/simulation-hcop_br_dh/47/tmp/shm/nic.NICSim-35-shm-pool-35:sync=true:latency=500:sync_interval=500 0 
++ [nic.DpuBMSim-39] /home/user/Documents/simbricks/sims/nic/dpu_bm/dpu_bm listen:/home/user/Documents/simbricks/experiments/out/simulation-hcop_br_dh/47/tmp/shm/pci-23.24.22:/home/user/Documents/simbricks/experiments/out/simulation-hcop_br_dh/47/tmp/shm/nic.DpuBMSim-39-shm-pool-39:sync=true:latency=500:sync_interval=500 listen:/home/user/Documents/simbricks/experiments/out/simulation-hcop_br_dh/47/tmp/shm/eth-21.32.31:/home/user/Documents/simbricks/experiments/out/simulation-hcop_br_dh/47/tmp/shm/nic.DpuBMSim-39-shm-pool-39:sync=true:latency=500:sync_interval=500 0  -c /home/user/Documents/simbricks/experiments/out/simulation-hcop_br_dh/47/output/output.nic.DpuBMSim-39-39/dpu_config.json
++ [nic.NICSim-37] /home/user/Documents/simbricks/sims/nic/i40e_bm/i40e_bm listen:/home/user/Documents/simbricks/experiments/out/simulation-hcop_br_dh/47/tmp/shm/pci-15.16.14:/home/user/Documents/simbricks/experiments/out/simulation-hcop_br_dh/47/tmp/shm/nic.NICSim-37-shm-pool-37:sync=true:latency=500:sync_interval=500 listen:/home/user/Documents/simbricks/experiments/out/simulation-hcop_br_dh/47/tmp/shm/eth-13.30.29:/home/user/Documents/simbricks/experiments/out/simulation-hcop_br_dh/47/tmp/shm/nic.NICSim-37-shm-pool-37:sync=true:latency=500:sync_interval=500 0 
+simulation-hcop_br_dh: waiting for sockets nic.NICSim-35
+simulation-hcop_br_dh: waited successfully for sockets nic.NICSim-35
+simulation-hcop_br_dh: waiting for sockets nic.DpuBMSim-39
+simulation-hcop_br_dh: waited successfully for sockets nic.DpuBMSim-39
+simulation-hcop_br_dh: waiting for sockets nic.NICSim-37
+simulation-hcop_br_dh: waited successfully for sockets nic.NICSim-37
++ [host.host0] /home/user/Documents/simbricks/sims/external/qemu/build/qemu-system-x86_64 -L /home/user/Documents/simbricks/sims/external/qemu/pc-bios -machine q35 -serial mon:stdio -cpu Skylake-Server -display none -nic none -kernel /home/user/Documents/simbricks/images/bzImage -drive file=/home/user/Documents/simbricks/experiments/out/simulation-hcop_br_dh/47/tmp/imgs/hdcopy.34.2.0,if=ide,index=0,media=disk,driver=qcow2 -drive file=/home/user/Documents/simbricks/experiments/out/simulation-hcop_br_dh/47/tmp/imgs/3.raw,if=ide,index=1,media=disk,driver=raw -append "earlyprintk=ttyS0 console=ttyS0 root=/dev/sda1 init=/home/ubuntu/guestinit.sh rw" -m 2048 -smp 1  -icount shift=-2,sleep=off -device simbricks-pci,socket=/home/user/Documents/simbricks/experiments/out/simulation-hcop_br_dh/47/tmp/shm/pci-7.8.6,sync=on,pci-latency=500,sync-period=500 
++ [host.host-dpu] /home/user/Documents/simbricks/sims/external/qemu/build/qemu-system-x86_64 -L /home/user/Documents/simbricks/sims/external/qemu/pc-bios -machine q35 -serial mon:stdio -cpu Skylake-Server -display none -nic none -kernel /home/user/Documents/simbricks/images/bzImage -drive file=/home/user/Documents/simbricks/experiments/out/simulation-hcop_br_dh/47/tmp/imgs/hdcopy.38.18.0,if=ide,index=0,media=disk,driver=qcow2 -drive file=/home/user/Documents/simbricks/experiments/out/simulation-hcop_br_dh/47/tmp/imgs/19.raw,if=ide,index=1,media=disk,driver=raw -append "earlyprintk=ttyS0 console=ttyS0 root=/dev/sda1 init=/home/ubuntu/guestinit.sh rw" -m 2048 -smp 1  -icount shift=-2,sleep=off -device simbricks-pci,socket=/home/user/Documents/simbricks/experiments/out/simulation-hcop_br_dh/47/tmp/shm/pci-23.24.22,sync=on,pci-latency=500,sync-period=500 
++ [net.HCOPSwitchSim-40] /home/user/Documents/simbricks/sims/net/hcop_switch/hcop_switch -S 500 -E 500 -s /home/user/Documents/simbricks/experiments/out/simulation-hcop_br_dh/47/tmp/shm/eth-5.28.27 -s /home/user/Documents/simbricks/experiments/out/simulation-hcop_br_dh/47/tmp/shm/eth-13.30.29 -s /home/user/Documents/simbricks/experiments/out/simulation-hcop_br_dh/47/tmp/shm/eth-21.32.31 -c /home/user/Documents/simbricks/experiments/out/simulation-hcop_br_dh/47/output/output.net.HCOPSwitchSim-40-40/switch_config.json
++ [host.host1] /home/user/Documents/simbricks/sims/external/qemu/build/qemu-system-x86_64 -L /home/user/Documents/simbricks/sims/external/qemu/pc-bios -machine q35 -serial mon:stdio -cpu Skylake-Server -display none -nic none -kernel /home/user/Documents/simbricks/images/bzImage -drive file=/home/user/Documents/simbricks/experiments/out/simulation-hcop_br_dh/47/tmp/imgs/hdcopy.36.10.0,if=ide,index=0,media=disk,driver=qcow2 -drive file=/home/user/Documents/simbricks/experiments/out/simulation-hcop_br_dh/47/tmp/imgs/11.raw,if=ide,index=1,media=disk,driver=raw -append "earlyprintk=ttyS0 console=ttyS0 root=/dev/sda1 init=/home/ubuntu/guestinit.sh rw" -m 2048 -smp 1  -icount shift=-2,sleep=off -device simbricks-pci,socket=/home/user/Documents/simbricks/experiments/out/simulation-hcop_br_dh/47/tmp/shm/pci-15.16.14,sync=on,pci-latency=500,sync-period=500 
+[host.host0] qemu-system-x86_64: -icount shift=-2,sleep=off: warning: time_shift=-2
+[host.host0] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.01H:ECX.fma [bit 12]
+[host.host0] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.01H:ECX.pcid [bit 17]
+[host.host0] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.01H:ECX.x2apic [bit 21]
+[host.host0] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.01H:ECX.tsc-deadline [bit 24]
+[host.host0] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.01H:ECX.avx [bit 28]
+[host.host0] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.01H:ECX.f16c [bit 29]
+[host.host0] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.07H:EBX.hle [bit 4]
+[host.host0] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.07H:EBX.avx2 [bit 5]
+[host.host0] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.07H:EBX.invpcid [bit 10]
+[host.host0] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.07H:EBX.rtm [bit 11]
+[host.host0] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.07H:EBX.avx512f [bit 16]
+[host.host0] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.07H:EBX.avx512dq [bit 17]
+[host.host0] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.07H:EBX.rdseed [bit 18]
+[host.host0] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.07H:EBX.avx512cd [bit 28]
+[host.host0] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.07H:EBX.avx512bw [bit 30]
+[host.host0] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.07H:EBX.avx512vl [bit 31]
+[host.host0] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.80000001H:ECX.3dnowprefetch [bit 8]
+[host.host0] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.0DH:EAX.xsavec [bit 1]
+[host.host-dpu] qemu-system-x86_64: -icount shift=-2,sleep=off: warning: time_shift=-2
+[host.host-dpu] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.01H:ECX.fma [bit 12]
+[host.host-dpu] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.01H:ECX.pcid [bit 17]
+[host.host-dpu] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.01H:ECX.x2apic [bit 21]
+[host.host-dpu] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.01H:ECX.tsc-deadline [bit 24]
+[host.host-dpu] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.01H:ECX.avx [bit 28]
+[host.host-dpu] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.01H:ECX.f16c [bit 29]
+[host.host-dpu] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.07H:EBX.hle [bit 4]
+[host.host-dpu] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.07H:EBX.avx2 [bit 5]
+[host.host-dpu] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.07H:EBX.invpcid [bit 10]
+[host.host-dpu] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.07H:EBX.rtm [bit 11]
+[host.host-dpu] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.07H:EBX.avx512f [bit 16]
+[host.host-dpu] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.07H:EBX.avx512dq [bit 17]
+[host.host-dpu] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.07H:EBX.rdseed [bit 18]
+[host.host-dpu] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.07H:EBX.avx512cd [bit 28]
+[host.host-dpu] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.07H:EBX.avx512bw [bit 30]
+[host.host-dpu] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.07H:EBX.avx512vl [bit 31]
+[host.host-dpu] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.80000001H:ECX.3dnowprefetch [bit 8]
+[host.host-dpu] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.0DH:EAX.xsavec [bit 1]
+[net.HCOPSwitchSim-40] SwitchConfig::Load parsing JSON barrier_default_participants=2 set to 2
+[net.HCOPSwitchSim-40] HcopSwitch running...
+[net.HCOPSwitchSim-40] HcopSwitch running... interval ns: 10000000
+[host.host1] qemu-system-x86_64: -icount shift=-2,sleep=off: warning: time_shift=-2
+[host.host1] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.01H:ECX.fma [bit 12]
+[host.host1] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.01H:ECX.pcid [bit 17]
+[host.host1] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.01H:ECX.x2apic [bit 21]
+[host.host1] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.01H:ECX.tsc-deadline [bit 24]
+[host.host1] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.01H:ECX.avx [bit 28]
+[host.host1] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.01H:ECX.f16c [bit 29]
+[host.host1] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.07H:EBX.hle [bit 4]
+[host.host1] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.07H:EBX.avx2 [bit 5]
+[host.host1] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.07H:EBX.invpcid [bit 10]
+[host.host1] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.07H:EBX.rtm [bit 11]
+[host.host1] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.07H:EBX.avx512f [bit 16]
+[host.host1] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.07H:EBX.avx512dq [bit 17]
+[host.host1] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.07H:EBX.rdseed [bit 18]
+[host.host1] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.07H:EBX.avx512cd [bit 28]
+[host.host1] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.07H:EBX.avx512bw [bit 30]
+[host.host1] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.07H:EBX.avx512vl [bit 31]
+[host.host1] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.80000001H:ECX.3dnowprefetch [bit 8]
+[host.host1] qemu-system-x86_64: warning: TCG doesn't support requested feature: CPUID.0DH:EAX.xsavec [bit 1]
+[host.host-dpu] Wrong EFI loader signature.
+[host.host-dpu] early console in extract_kernel
+[host.host-dpu] input_data: 0x00000000023753a8
+[host.host-dpu] input_len: 0x000000000044ecc8
+[host.host-dpu] output: 0x0000000001000000
+[host.host-dpu] output_len: 0x000000000178ba40
+[host.host-dpu] kernel_total_size: 0x0000000001626000
+[host.host-dpu] needed_size: 0x0000000001800000
+[host.host-dpu] trampoline_32bit: 0x000000000009d000
+[host.host-dpu] 
+[host.host0] Wrong EFI loader signature.
+[host.host0] early console in extract_kernel
+[host.host0] input_data: 0x00000000023753a8
+[host.host0] input_len: 0x000000000044ecc8
+[host.host0] output: 0x0000000001000000
+[host.host0] output_len: 0x000000000178ba40
+[host.host0] kernel_total_size: 0x0000000001626000
+[host.host0] needed_size: 0x0000000001800000
+[host.host0] trampoline_32bit: 0x000000000009d000
+[host.host0] 
+[host.host1] Wrong EFI loader signature.
+[host.host1] early console in extract_kernel
+[host.host1] input_data: 0x00000000023753a8
+[host.host1] input_len: 0x000000000044ecc8
+[host.host1] output: 0x0000000001000000
+[host.host1] output_len: 0x000000000178ba40
+[host.host1] kernel_total_size: 0x0000000001626000
+[host.host1] needed_size: 0x0000000001800000
+[host.host1] trampoline_32bit: 0x000000000009d000
+[host.host1] 
+- [net.HCOPSwitchSim-40] exited with code -9
+[host.host0] Decompressing Linux... 
+- [host.host0] exited with code -9
+[host.host1] Decompressing Linux... 
+- [host.host1] exited with code -9
+simulation-hcop_br_dh: cleaning up
+[nic.NICSim-35] info: mac_addr=42eb98e276a4
+[nic.NICSim-35] info: sync_pci=1 sync_eth=1
+[nic.NICSim-35] info: exit main_time: 37664000000
+[nic.NICSim-35] info:       h2d_poll_total:              921367919         h2d_poll_suc:                  75328  poll_suc_rate: 0.000082
+[nic.NICSim-35] info:                                                     h2d_poll_sync:                  75328  sync_rate: 1.000000
+[nic.NICSim-35] info:       n2d_poll_total:              921367919         n2d_poll_suc:                  75327  poll_suc_rate: 0.000082
+[nic.NICSim-35] info:                                                     n2d_poll_sync:                  75327  sync_rate: 1.000000
+[nic.NICSim-35] info:           recv_total:                 150655            recv_sync:                 150655  sync_rate: 1.000000
+[nic.NICSim-35] info:     s_h2d_poll_total:                      0       s_h2d_poll_suc:                      0  poll_suc_rate: -nan
+[nic.NICSim-35] info:                                                   s_h2d_poll_sync:                      0  sync_rate: -nan
+[nic.NICSim-35] info:     s_n2d_poll_total:                      0       s_n2d_poll_suc:                      0  poll_suc_rate: -nan
+[nic.NICSim-35] info:                                                   s_n2d_poll_sync:                      0  sync_rate: -nan
+[nic.NICSim-35] info:         s_recv_total:                      0          s_recv_sync:                      0  sync_rate: -nan
+[nic.NICSim-37] info: mac_addr=855014d2c140
+[nic.NICSim-37] info: sync_pci=1 sync_eth=1
+[nic.NICSim-37] info: exit main_time: 37664510000
+[nic.NICSim-37] info:       h2d_poll_total:              947152059         h2d_poll_suc:                  75329  poll_suc_rate: 0.000080
+[nic.NICSim-37] info:                                                     h2d_poll_sync:                  75329  sync_rate: 1.000000
+[nic.NICSim-37] info:       n2d_poll_total:              947152059         n2d_poll_suc:                  75329  poll_suc_rate: 0.000080
+[nic.NICSim-37] info:                                                     n2d_poll_sync:                  75329  sync_rate: 1.000000
+[nic.NICSim-37] info:           recv_total:                 150658            recv_sync:                 150658  sync_rate: 1.000000
+[nic.NICSim-37] info:     s_h2d_poll_total:                      0       s_h2d_poll_suc:                      0  poll_suc_rate: -nan
+[nic.NICSim-37] info:                                                   s_h2d_poll_sync:                      0  sync_rate: -nan
+[nic.NICSim-37] info:     s_n2d_poll_total:                      0       s_n2d_poll_suc:                      0  poll_suc_rate: -nan
+[nic.NICSim-37] info:                                                   s_n2d_poll_sync:                      0  sync_rate: -nan
+[nic.NICSim-37] info:         s_recv_total:                      0          s_recv_sync:                      0  sync_rate: -nan
+[host.host-dpu] Decompressing Linux... 
+- [host.host-dpu] exited with code -9
+- [nic.DpuBMSim-39] exited with code -9
+- [nic.NICSim-35] exited with code 0
+- [nic.NICSim-37] exited with code 0
+Writing collected output of run simulation-hcop_br_dh.0 to JSON file ...

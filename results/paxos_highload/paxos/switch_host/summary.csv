@@ -1,0 +1,2 @@
+placement_config,primitive_type,workload_params,latency_mean_ns,latency_p50_ns,latency_p99_ns,throughput_ops_per_sec,host_cpu_utilization_pct,host_cpu_utilization_peak_pct,switch_stage_utilization_pct,switch_stage_utilization_peak_pct,dpu_core_utilization_pct,dpu_core_utilization_peak_pct,dpu_memory_utilization_pct,dpu_memory_utilization_peak_pct,exception_rate_pct,overflow_rate_pct
+switch_host,paxos,"n=500,d=0",9122.256,9034.0,9827.539999999983,54063.07820462139,NULL,NULL,0.17079500498664865,4.8828125,NULL,NULL,NULL,NULL,0.0,0.0

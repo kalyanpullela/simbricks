@@ -1,0 +1,44 @@
+# syntax=docker/dockerfile:1.4
+ARG _DEV_CONTAINERS_BASE_IMAGE=placeholder
+
+
+
+
+FROM $_DEV_CONTAINERS_BASE_IMAGE AS dev_containers_feature_content_normalize
+USER root
+COPY --from=dev_containers_feature_content_source devcontainer-features.builtin.env /tmp/build-features/
+RUN chmod -R 0755 /tmp/build-features/
+
+FROM $_DEV_CONTAINERS_BASE_IMAGE AS dev_containers_target_stage
+
+USER root
+
+RUN mkdir -p /tmp/dev-container-features
+COPY --from=dev_containers_feature_content_normalize /tmp/build-features/ /tmp/dev-container-features
+
+RUN \
+echo "_CONTAINER_USER_HOME=$( (command -v getent >/dev/null 2>&1 && getent passwd 'root' || grep -E '^root|^[^:]*:[^:]*:root:' /etc/passwd || true) | cut -d: -f6)" >> /tmp/dev-container-features/devcontainer-features.builtin.env && \
+echo "_REMOTE_USER_HOME=$( (command -v getent >/dev/null 2>&1 && getent passwd 'simbricks' || grep -E '^simbricks|^[^:]*:[^:]*:simbricks:' /etc/passwd || true) | cut -d: -f6)" >> /tmp/dev-container-features/devcontainer-features.builtin.env
+
+ENV DOCKER_BUILDKIT="1"
+RUN --mount=type=bind,from=dev_containers_feature_content_source,source=docker-in-docker_0,target=/tmp/build-features-src/docker-in-docker_0 \
+    cp -ar /tmp/build-features-src/docker-in-docker_0 /tmp/dev-container-features \
+ && chmod -R 0755 /tmp/dev-container-features/docker-in-docker_0 \
+ && cd /tmp/dev-container-features/docker-in-docker_0 \
+ && chmod +x ./devcontainer-features-install.sh \
+ && ./devcontainer-features-install.sh \
+ && rm -rf /tmp/dev-container-features/docker-in-docker_0
+
+
+
+
+
+ARG _DEV_CONTAINERS_IMAGE_USER=root
+USER $_DEV_CONTAINERS_IMAGE_USER
+
+LABEL devcontainer.metadata="[ \
+{\"id\":\"ghcr.io/devcontainers/features/docker-in-docker:2\",\"privileged\":true,\"entrypoint\":\"/usr/local/share/docker-init.sh\",\"mounts\":[{\"source\":\"dind-var-lib-docker-\${devcontainerId}\",\"target\":\"/var/lib/docker\",\"type\":\"volume\"}],\"customizations\":{\"vscode\":{\"extensions\":[\"ms-azuretools.vscode-containers\"],\"settings\":{\"github.copilot.chat.codeGeneration.instructions\":[{\"text\":\"This dev container includes the Docker CLI (`docker`) pre-installed and available on the `PATH` for running and managing containers using a dedicated Docker daemon running inside the dev container.\"}]}}}}, \
+{\"postCreateCommand\":\"sudo ln -s `pwd` /simbricks\",\"postStartCommand\":\"sudo chmod o+rw /dev/kvm\",\"customizations\":{\"vscode\":{\"extensions\":[\"ms-python.python\",\"ms-vscode.cpptools\",\"mshr-h.veriloghdl\",\"surfer-project.surfer\"]}},\"remoteUser\":\"simbricks\",\"remoteEnv\":{\"PATH\":\"/home/simbricks/.local/bin:\${containerEnv:PATH}\"}} \
+]"
+
+

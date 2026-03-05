@@ -340,7 +340,7 @@ class QemuSim(HostSim):
         accel = ",accel=kvm:tcg" if not sync else ""
 
         cmd = (
-            f"{inst.env.repo_base(relative_path=self._executable)} -machine q35{accel} -serial mon:stdio "
+            f"{inst.env.repo_base(relative_path=self._executable)} -L {inst.env.repo_base('sims/external/qemu/pc-bios')} -machine q35{accel} -serial mon:stdio "
             "-cpu Skylake-Server -display none -nic none "
             f"-kernel {inst.env.repo_base('images/bzImage')} "
         )

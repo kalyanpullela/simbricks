@@ -1,0 +1,11 @@
+operation_id,primitive_type,placement_config,start_time_ns,end_time_ns,latency_ns,tier_path,num_tier_crossings,was_exception,exception_type
+1,3,unknown,3711129207,3711143860,14653,S->D->D->S,4,0,0
+1,3,unknown,3762130068,3762144679,14611,S->D->D->S,4,0,0
+1,3,unknown,3813130915,3813145543,14628,S->D->D->S,4,0,0
+1,3,unknown,3864131797,3864146419,14622,S->D->D->S,4,0,0
+1,3,unknown,3915132644,3915147273,14629,S->D->D->S,4,0,0
+1,3,unknown,3710138124,3711144235,1006111,S->D->D->S,4,0,0
+1,3,unknown,3762130068,3762145032,14964,S->D->D->S,4,0,0
+1,3,unknown,3813130921,3813145894,14973,S->D->D->S,4,0,0
+1,3,unknown,3864131797,3864146771,14974,S->D->D->S,4,0,0
+1,3,unknown,3915132650,3915147633,14983,S->D->D->S,4,0,0

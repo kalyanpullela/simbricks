@@ -1,0 +1,2 @@
+placement_config,primitive_type,workload_params,latency_mean_ns,latency_p50_ns,latency_p99_ns,throughput_ops_per_sec,host_cpu_utilization_pct,host_cpu_utilization_peak_pct,switch_stage_utilization_pct,switch_stage_utilization_peak_pct,dpu_core_utilization_pct,dpu_core_utilization_peak_pct,dpu_memory_utilization_pct,dpu_memory_utilization_peak_pct,exception_rate_pct,overflow_rate_pct
+dpu_only,lock,"n=500,d=0",14804.588,14676.0,15741.859999999979,45396.71416766986,0.0,0.0,NULL,NULL,0.0,0.0,3.4924596548080444e-05,0.00027939677238464355,0.0,0.0
